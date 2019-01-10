@@ -27,7 +27,7 @@ Jupyter notebooks `dataset.ipynb` and `demo.ipynb` in the `notebooks` folder pro
 You can install `hmm_filter` with pip:
 
 ```
-pip install hmm_filter
+pip install hmm-filter
 ```
 
 ## Credits and license
