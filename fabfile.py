@@ -6,6 +6,7 @@ from fabric.api import local
 from fabric.decorators import task
 
 import version
+from secrets import pypi_auth
 
 
 def fatal(msg):
@@ -199,8 +200,6 @@ def release():
     Release new package version to pypi
     :return:
     """
-
-    from secrets import pypi_auth
 
     # Check that all changes are committed before creating a new version
     git_check()
