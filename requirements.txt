@@ -1,0 +1,9 @@
+pycodestyle
+autopep8
+pytest
+setuptools
+twine
+wheel
+Fabric3
+jupyterlab
+joblib

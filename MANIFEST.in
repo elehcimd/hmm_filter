@@ -1,0 +1,9 @@
+# Include the license file
+include LICENSE.txt
+
+# Include version file
+include version.py
+
+# Exclude temporary files and directories
+recursive-exclude pynb __pycache__
+recursive-exclude pynb *.py[co]
