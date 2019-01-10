@@ -48,6 +48,12 @@ pip install hmm-filter
 
 The hmm_filter project is released under the MIT license. Please see [LICENSE.txt](https://github.com/minodes/hmm_filter/blob/master/LICENSE.txt).
 
+Contributors include:
+
+* Michele Dallachiesa: https://github.com/elehcimd
+* Adrian Loy: https://github.com/adrianloy
+
+
 ## Development
 
 Tests, builds and releases are managed with `Fabric`.
