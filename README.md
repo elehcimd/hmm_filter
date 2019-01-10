@@ -10,6 +10,7 @@ This small Python package lets you improve the accuracy of sequences of predicti
 
 The HMM filter requires a sufficiently good base classifier to provide meaningful predictions (the HMM filter improves the accuracy of the base classifier, does not substitute it). The HMM filter provides diminishing improved accuracies as the accuracy of the base classifier increases (it becomes incresingly more difficult to be better than the base classifier). There is a sweet spot between these two extremes, where the HMM filter contributes significanly to the overall accuracy, as in the synthetic dataset provided as example. 
 
+
 ## Usage
 
 * Step 1: Train a classifier on training dataset (multi-class or binary)
@@ -17,6 +18,19 @@ The HMM filter requires a sufficiently good base classifier to provide meaningfu
 * Step 3: Estimate HMM state transition matrix from predicted labels of unlabeled dataset
 * Step 4: Estimate class probability distributions for test dataset using trained random forest
 * Step 5: Predict most likely sequence of states for each session in test dataset using HMM filter
+
+
+## How does it work
+
+
+[HMMs](https://en.wikipedia.org/wiki/Hidden_Markov_model) are defined by hidden states, state transition probabilities, possible observations and their emission probabilities. In our problem, the HMM parameters are the following:
+
+* Hidden states are drawn from the categorical distribution of the classification class labels. E.g., `"0:0"` where the pair of numbers identifies a cell in a 2D grid at position `x=0` and `y=0`
+* State transition probabilities are represented by the state transition matrix. E.g., `P("0:0 -> "0:1") = 0.2`
+* Possible observations are drawn from the categorical distribution of the classification class labels. E.g., `"0:0"`
+* Emission probabilities are estimated by the prediction probability estimates. E.g., `{"0:0": 0.4, "0:1": 0.6}`
+
+The HMM filter revises the predictions accordingly to their uncertainty and the state transition matrix estimated from unlabeled data using the [Viterbi algorithm](https://en.wikipedia.org/wiki/Viterbi_algorithm). E.g, it might suggest to revise the sequence of predictions `["0:0", "1:1", "0:0"]` to `["0:0", "0:0", "0:0"]` since it is more likely to remain in the same cell (accordingly to the transition matrix) and the classifier was uncertain about the correct label in the 2nd position (E.g., `{"0:0": 0.8, "1:1": 0.2}`)
 
 ## Example
 
