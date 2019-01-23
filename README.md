@@ -103,7 +103,7 @@ fab test
 To run a single test:
 
 ```
-fab test:tests/test_test_pep8.py::test_pep8
+fab test:tests/test_pep8.py::test_pep8
 ```
 
 To run tests printing output and stopping at first error:
